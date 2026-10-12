@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f7f8">
+  <meta name="description" content="استودیوی آفلاین طراحی تایپوگرافی فارسی برای پست و استوری اینستاگرام">
+  <title>خط‌پلی | استودیوی تایپوگرافی</title>
+  <link rel="stylesheet" href="./css/app.css">
+  <script src="./js/fonts.js" defer></script>
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="خط‌پلی، خانه">
+      <span class="brand-mark" aria-hidden="true">خ</span>
+      <span><strong>خط‌پلی</strong><small>KHATPLAY STUDIO</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="local-badge"><i></i> آفلاین و خصوصی</span>
+      <button class="icon-button" id="undoButton" title="واگرد" aria-label="واگرد" disabled>↶</button>
+      <button class="icon-button" id="redoButton" title="از نو" aria-label="از نو" disabled>↷</button>
+      <button class="icon-button theme-toggle" id="themeButton" title="تغییر حالت روشن و تیره" aria-label="تغییر حالت روشن و تیره">◐</button>
+    </div>
+  </header>
+
+  <main id="top" class="workspace">
+    <section class="editor-column" aria-label="ویرایشگر طرح">
+      <div class="section-heading">
+        <div><span class="eyebrow">استودیوی تایپوگرافی فارسی</span><h1>کلماتت را <em>بازی بده.</em></h1></div>
+        <span class="save-state" id="saveState">ذخیره خودکار روشن</span>
+      </div>
+
+      <section class="tool-section text-section">
+        <div class="section-label"><span class="step">01</span><h2>متن تو</h2><span class="char-count" id="charCount">۰ نویسه</span></div>
+        <textarea id="textInput" rows="3" spellcheck="false" aria-label="متن طرح">بگذار کلمات نفس بکشند</textarea>
+        <div class="toolbar-row">
+          <label class="select-wrap"><span>قالب خروجی</span><select id="formatSelect" aria-label="اندازه خروجی">
+            <option value="square">پست مربعی · ۱۰۸۰ × ۱۰۸۰</option>
+            <option value="portrait">پست عمودی · ۱۰۸۰ × ۱۳۵۰</option>
+            <option value="story" selected>استوری · ۱۰۸۰ × ۱۹۲۰</option>
+            <option value="telegram">استوری تلگرام · ۱۰۸۰ × ۱۹۲۰</option>
+            <option value="threads">Threads · ۱۰۸۰ × ۱۳۵۰</option>
+            <option value="whatsapp">استاتوس واتساپ · ۱۰۸۰ × ۱۹۲۰</option>
+          </select></label>
+          <label class="switch-control"><input id="safeToggle" type="checkbox" checked><span class="switch-ui"></span><span>حاشیه امن</span></label>
+        </div>
+      </section>
+
+      <section class="tool-section type-section">
+        <div class="section-label"><span class="step">02</span><h2>چیدمان</h2><span class="active-font-label" id="activeFontLabel">Dana</span></div>
+        <div class="control-grid">
+          <label class="range-control span-two"><span class="range-heading">اندازه <output id="sizeValue">۱۱۰</output></span><input id="sizeRange" type="range" min="28" max="250" value="110"></label>
+          <label class="range-control"><span class="range-heading">وزن <output id="weightValue">۴۰۰</output></span><input id="weightRange" type="range" min="400" max="700" step="100" value="400"></label>
+          <label class="range-control"><span class="range-heading">فاصله خطوط <output id="lineValue">۱٫۵</output></span><input id="lineRange" type="range" min="1" max="2.5" step="0.05" value="1.5"></label>
+          <label class="range-control span-two"><span class="range-heading">فاصله حروف <output id="trackingValue">۰</output></span><input id="trackingRange" type="range" min="-0.04" max="0.16" step="0.005" value="0"></label>
+          <div id="alignChips" class="align-control span-two" role="group" aria-label="تراز متن">
+            <button data-align="right" title="راست‌چین" aria-label="راست‌چین">⇤</button><button data-align="center" class="is-active" title="وسط‌چین" aria-label="وسط‌چین">≡</button><button data-align="left" title="چپ‌چین" aria-label="چپ‌چین">⇥</button>
+          </div>
+          <label class="select-wrap"><span>نمایش رقم‌ها</span><select id="numberMode"><option value="auto">همان‌طور که نوشته شده</option><option value="persian">فارسی</option><option value="arabic">عربی</option><option value="latin">لاتین</option></select></label>
+          <label class="switch-control"><input id="autoFitToggle" type="checkbox" checked><span class="switch-ui"></span><span>اندازه خودکار</span></label>
+        </div>
+      </section>
+
+      <section class="tool-section color-section">
+        <div class="section-label"><span class="step">03</span><h2>رنگ و عمق</h2></div>
+        <div class="color-grid">
+          <label class="color-control"><span>رنگ متن</span><input id="textColor" type="color" value="#ffffff"></label>
+          <label class="color-control"><span>پس‌زمینه ۱</span><input id="backgroundColor" type="color" value="#153b3a"></label>
+          <label class="color-control"><span>پس‌زمینه ۲</span><input id="backgroundColor2" type="color" value="#208c7b"></label>
+          <label class="color-control"><span>رنگ سایه</span><input id="shadowColor" type="color" value="#071d1b"></label>
+          <label class="color-control"><span>رنگ کادر</span><input id="borderColor" type="color" value="#f0c84b"></label>
+        </div>
+        <div class="toolbar-row compact-row">
+          <label class="select-wrap"><span>پس‌زمینه</span><select id="backgroundMode"><option value="gradient">گرادیان</option><option value="solid">تک‌رنگ</option><option value="transparent">شفاف</option></select></label>
+          <label class="switch-control"><input id="autoContrastToggle" type="checkbox" checked><span class="switch-ui"></span><span>کنتراست خودکار</span></label>
+          <label class="switch-control"><input id="shadowToggle" type="checkbox" checked><span class="switch-ui"></span><span>سایه متن</span></label>
+          <label class="switch-control"><input id="borderToggle" type="checkbox"><span class="switch-ui"></span><span>کادر متن</span></label>
+        </div>
+        <div class="control-grid effect-grid">
+          <label class="range-control"><span class="range-heading">شدت سایه <output id="shadowValue">۱۸</output></span><input id="shadowRange" type="range" min="0" max="60" value="18"></label>
+          <label class="range-control"><span class="range-heading">ضخامت کادر <output id="borderValue">۲</output></span><input id="borderRange" type="range" min="0" max="18" value="2"></label>
+        </div>
+        <div class="swatches" id="backgroundSwatches" aria-label="پس‌زمینه‌های آماده"></div>
+      </section>
+
+      <section class="tool-section library-section">
+        <div class="section-label"><span class="step">04</span><h2>انتخاب قلم</h2><span class="char-count" id="fontCount"></span></div>
+        <div class="search-line"><input id="fontSearch" type="search" placeholder="جست‌وجوی فونت…" aria-label="جست‌وجوی فونت"><button id="favoritesFilter" class="filter-button" aria-pressed="false" title="فقط علاقه‌مندی‌ها">☆</button></div>
+        <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="فیلتر دسته‌بندی"></div>
+        <div class="font-grid" id="fontGrid"></div>
+        <p class="slot-note" id="slotNote"></p>
+      </section>
+    </section>
+
+    <aside class="preview-column" aria-label="پیش‌نمایش و خروجی">
+      <div class="preview-sticky">
+        <section class="preview-card">
+          <div class="preview-heading"><div><span class="eyebrow">پیش‌نمایش زنده</span><h2 id="previewFormatName">استوری اینستاگرام</h2></div><span class="live-mark"><i></i> LIVE</span></div>
+          <div class="stage-wrap"><div class="stage-frame" id="stageFrame"><canvas id="stage" aria-label="تصویر پیش‌نمایش طرح"></canvas><div id="safeOverlay" class="safe-overlay" aria-hidden="true"><span>حاشیه امن</span></div></div></div>
+          <div class="preview-footer"><span id="dimensions">۱۰۸۰ × ۱۹۲۰ px</span><span id="renderStatus">آماده</span></div>
+          <p class="font-error" id="fontError" role="alert" hidden></p>
+          <div class="export-actions"><button class="primary-button" id="downloadPng">↓ PNG</button><button class="secondary-button" id="downloadJpg">↓ JPG</button><button class="secondary-button copy-button" id="copyImage" title="کپی تصویر" aria-label="کپی تصویر">▣</button></div>
+          <button class="surprise-button" id="surpriseButton">✳ ترکیب تصادفی</button>
+        </section>
+        <section class="templates-block"><div class="block-heading"><h2>قالب‌های آماده</h2><span>۱۲ شروع تازه</span></div><div class="template-list" id="templateList"></div></section>
+        <section class="compare-block"><div class="block-heading"><h2>مقایسه قلم‌ها</h2><span id="compareCount">۰ از ۳</span></div><div class="compare-list" id="compareList"><p>از کارت فونت‌ها برای مقایسه استفاده کن.</p></div></section>
+      </div>
+    </aside>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
